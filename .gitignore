@@ -1,2 +1,5 @@
 *.csv
 1. 합성데이터/
+team/
+__pycache__/
+.dist/

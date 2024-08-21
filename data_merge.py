@@ -12,6 +12,6 @@ class data_concat():
         df_list = pd.DataFrame(columns = self.column_name)
         for data in data_list:
             df = pd.read_csv(os.path.join(self.path, data))
-            df = df.query('순위 <= 15')
+            df = df.query('순위 <= 25')
             df_list = pd.concat([df_list, df])
         return df_list

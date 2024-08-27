@@ -20,7 +20,7 @@ class modeling():
         x_train, x_target, y_train, y_target = train_test_split(x, y, test_size = 0.2, random_state = 42)
         return x_train, x_target, y_train, y_target
     
-    def get_DMatrix(train_data, test_data, train_label, test_label):
+    def get_DMatrix(self, train_data, test_data, train_label, test_label):
         dtrain = xgb.DMatrix(data = train_data, label = train_label)
         dtest = xgb.DMatrix(data = test_data, label = test_label)
         return dtrain, dtest

@@ -4,9 +4,10 @@ class regression_model():
     
     def data_split(self):
         import numpy as np
+        import pandas as pd
         from sklearn.model_selection import train_test_split
         data = self.df
-        X = data[['ERA', 'W', '연차', 'WAR_x', 'Adj_ERA', 'WHIP', 'SO_G', 'pFIP','QS_G', 'WAR_won', 'K_BB','현재연봉']].to_numpy()
+        X = data.drop('예측연봉', axis = 1).to_numpy()
         y = data['예측연봉'].to_numpy()
         train_x, test_x, train_y, test_y = train_test_split(X, y, test_size = 0.2, random_state = 42)
         return train_x, test_x, train_y, test_y

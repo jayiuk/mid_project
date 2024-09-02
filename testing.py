@@ -19,3 +19,6 @@ target = target.values.tolist()
 
 
 x_model.get_eval(target, preds)
+
+name = 'pitcher_salary_predict.model'
+pkl.dump(x_model_fin, open(name, 'wb'))

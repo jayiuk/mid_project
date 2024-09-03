@@ -9,6 +9,7 @@ class xgb_c_model():
         input = self.input
         target = self.target
         train_input, test_input, train_target, test_target = train_test_split(input, target, test_size = 0.2, random_state = 42)
+        print(len(train_input))
         dtrain = xgb.DMatrix(data = train_input, label = train_target)
         dtest = xgb.DMatrix(data = test_input, label = test_target)
         return dtrain, dtest
@@ -42,7 +43,7 @@ class xgb_c_model():
         return preds
     
     def get_eval(self, test, preds):
-        from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+        from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
         confusion = confusion_matrix(test, preds)
         accuracy = accuracy_score(test, preds)
         precision = precision_score(test, preds, average = 'weighted')
@@ -53,3 +54,4 @@ class xgb_c_model():
         print('정밀도 : ', precision)
         print('재현율 : ', recall)
         print('F1 : ', F1)
+

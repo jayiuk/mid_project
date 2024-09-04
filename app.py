@@ -4,8 +4,8 @@ import numpy as np
 import pickle as pkl
 import xgboost as xgb
 
-def new_data(G, ERA, W, NP, IP, TBF, QS, WAR, RA_9, career_year, WHIP, BB,current_salary, SO):
-    input = pd.DataFrame([{'ERA' : ERA, 'QS_G' : QS/G, 'SO' : SO, 'WAR_x' : WAR, 'W' : W, 'IP' : IP, 'K_BB' : SO/BB, 'exp_QS' : (QS/G) * QS, 'SO_G' : SO/G, 'QS' : QS,'NP' : NP, 'RA_9' : RA_9, '연차' : career_year, 'TBF' : TBF, '현재연봉' : current_salary, 'WHIP' : WHIP, 'K-BB' : ((SO/TBF) * 100) - ((BB/TBF) * 100) ,'NP/IP' : NP/IP}])
+def new_data(G, ERA, W, NP, IP, TBF, QS, WAR, R, career_year, WHIP, BB,current_salary, SO):
+    input = pd.DataFrame([{'ERA' : ERA, 'QS_G' : QS/G, 'SO' : SO, 'WAR_x' : WAR, 'W' : W, 'IP' : IP, 'K_BB' : SO/BB, 'exp_QS' : (QS/G) * QS, 'SO_G' : SO/G, 'QS' : QS,'NP' : NP, 'RA_9' : (R/IP) * 9, '연차' : career_year, 'TBF' : TBF, '현재연봉' : current_salary, 'WHIP' : WHIP, 'K-BB' : ((SO/TBF) * 100) - ((BB/TBF) * 100) ,'NP/IP' : NP/IP}])
     with open('pitcher_salary_predict.model', 'rb') as f:
         model = pkl.load(f)
     input_d = xgb.DMatrix(input)
@@ -22,7 +22,7 @@ def main():
     TBF = st.number_input('상대한 타자 수', min_value = 0)
     QS = st.number_input('QS', min_value = 0)
     WAR = st.number_input('WAR', min_value = 0.0)
-    RA_9 = st.number_input('RA/9', min_value = 0.0)
+    RA_9 = st.number_input('실점', min_value = 0)
     career_year = st.number_input('연차', min_value = 1)
     WHIP = st.number_input('WHIP', min_value = 0.0)
     BB = st.number_input('볼넷', min_value = 0)

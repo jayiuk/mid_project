@@ -54,4 +54,3 @@ class xgb_c_model():
         print('정밀도 : ', precision)
         print('재현율 : ', recall)
         print('F1 : ', F1)
-

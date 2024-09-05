@@ -5,16 +5,6 @@ class xgb_c_model():
         self.input = input
         self.target = target
 
-    def data_transform(self):
-        from sklearn.model_selection import train_test_split
-        import xgboost as xgb
-        input = self.input
-        target = self.target
-        train_input, test_input, train_target, test_target = train_test_split(input, target, test_size = 0.2, random_state = 42)
-        print(len(train_input))
-        dtrain = xgb.DMatrix(data = train_input, label = train_target)
-        dtest = xgb.DMatrix(data = test_input, label = test_target)
-        return dtrain, dtest
     
     def data_split(self):
         from sklearn.model_selection import train_test_split
@@ -23,22 +13,6 @@ class xgb_c_model():
         train_input, test_input, train_target, test_target = train_test_split(input, target, test_size = 0.2, random_state = 42)
         return train_input, test_input, train_target, test_target
     
-    def get_test(self):
-        from sklearn.model_selection import train_test_split
-        import xgboost as xgb
-        input = self.input
-        target = self.target
-        train_input, test_input, train_target, test_target = train_test_split(input, target, test_size = 0.2, random_state = 42)
-        dtrain = xgb.DMatrix(train_input, train_target)
-        dtest = xgb.DMatrix(test_input, test_target)
-        return dtest
-    
-    def get_target(self):
-        from sklearn.model_selection import train_test_split
-        input = self.input
-        target = self.target
-        train_input, test_input, train_target, test_target = train_test_split(input, target, test_size = 0.2, random_state = 42)
-        return test_target
 
     def train(self):
         from xgboost import XGBClassifier

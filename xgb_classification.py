@@ -37,6 +37,12 @@ class xgb_c_model():
         dtrain, dtest = self.data_transform()
         model = xgb.train(params = parameter, dtrain = dtrain, num_boost_round = num, early_stopping_rounds = early, evals = [(dtrain, 'train'), (dtest, 'eval')])
         return model
+    
+    def feature_importance(self, model):
+        import xgboost as xgb
+        fi = model.feature_importances_
+        return fi
+    
     def model_test(self, model, test_dmatrix):
         import xgboost as xgb
         preds = model.predict(test_dmatrix)

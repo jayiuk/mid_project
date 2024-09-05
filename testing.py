@@ -11,6 +11,8 @@ from xgb_classification import xgb_c_model
 x_model = xgb_c_model(df_input, df_target)
 b = x_model.data_transform()
 x_model_fin = x_model.train(parameter, 400, 100)
+fi = x_model.feature_importance(x_model_fin)
+print(fi)
 
 dtest = x_model.get_test()
 preds = x_model.model_test(x_model_fin, dtest)
